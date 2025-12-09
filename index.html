@@ -3,400 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fior di Loto - Centro Yoga & Wellness</title>
+    <title>Fior di Loto - Centro Yoga & Benessere</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Satisfy&display=swap');
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #9333ea;
+            --secondary: #c084fc;
+            --dark: #4a1d7a;
+            --light: #f5f3ff;
+            --white: #ffffff;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 50%, #faf5ff 100%);
-            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f5f3ff 0%, #faf5ff 100%);
+        }
+
+        .lotus-float {
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.08;
+            animation: float-lotus 20s infinite ease-in-out;
+        }
+
+        .lotus-float:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .lotus-float:nth-child(2) { top: 60%; right: 10%; animation-delay: 5s; }
+        .lotus-float:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 10s; }
+        .lotus-float:nth-child(4) { top: 40%; right: 20%; animation-delay: 15s; }
+
+        @keyframes float-lotus {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-30px) rotate(5deg) scale(1.1); }
+            50% { transform: translateY(-20px) rotate(-5deg) scale(0.9); }
+            75% { transform: translateY(-40px) rotate(3deg) scale(1.05); }
         }
 
         /* Header */
         header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(147, 51, 234, 0.1);
-            position: sticky;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         header.scrolled {
             background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.1);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(147, 51, 234, 0.1);
         }
 
-        .header-content {
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
-            background: white;
-            padding: 15px 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(147, 51, 234, 0.15);
-            transition: all 0.3s ease;
-            z-index: 1001;
         }
 
-        .logo:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(147, 51, 234, 0.25);
+        .logo-svg {
+            width: 60px;
+            height: 60px;
+            filter: drop-shadow(0 4px 10px rgba(147, 51, 234, 0.3));
+            transition: transform 0.3s ease;
         }
 
-        .logo-image {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .logo-svg:hover {
+            transform: rotate(360deg) scale(1.1);
         }
 
-        .logo-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #9333ea, #c084fc);
+        .brand-name {
+            font-family: 'Satisfy', cursive;
+            font-size: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            font-style: italic;
         }
 
-        .header-buttons {
+        .nav-links {
             display: flex;
-            gap: 15px;
-            align-items: center;
+            gap: 40px;
+            list-style: none;
         }
 
-        .header-btn {
-            background: linear-gradient(135deg, #9333ea, #c084fc);
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 12px 25px;
-            border-radius: 12px;
+            padding: 12px 30px;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 600;
+            box-shadow: 0 8px 20px rgba(147, 51, 234, 0.3);
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
-        .header-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(147, 51, 234, 0.5);
         }
 
-        /* Hamburger Menu Button */
-        .hamburger {
+        /* Mobile Menu */
+        .mobile-toggle {
             display: none;
             flex-direction: column;
             gap: 6px;
-            background: linear-gradient(135deg, #9333ea, #c084fc);
-            padding: 15px;
-            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
-            z-index: 1001;
+            padding: 10px;
         }
 
-        .hamburger:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
-        }
-
-        .hamburger span {
-            width: 25px;
+        .mobile-toggle span {
+            width: 30px;
             height: 3px;
-            background: white;
+            background: var(--primary);
             border-radius: 3px;
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
+        .mobile-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(8px, 8px);
         }
 
-        .hamburger.active span:nth-child(2) {
+        .mobile-toggle.active span:nth-child(2) {
             opacity: 0;
-            transform: translateX(20px);
         }
 
-        .hamburger.active span:nth-child(3) {
+        .mobile-toggle.active span:nth-child(3) {
             transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* Navigation */
-        nav {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 15px;
-            margin: 30px 0;
-            box-shadow: 0 10px 40px rgba(147, 51, 234, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .nav-menu {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 10px;
-            list-style: none;
-        }
-
-        .nav-menu li a {
-            display: block;
-            padding: 15px 25px;
-            background: linear-gradient(135deg, #9333ea, #c084fc);
-            color: white;
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-menu li a::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #7e22ce, #9333ea);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .nav-menu li a:hover::before {
-            left: 0;
-        }
-
-        .nav-menu li a:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
-        }
-
-        /* Hero Carousel */
-        .hero-carousel {
-            background: white;
-            border-radius: 30px;
-            padding: 80px;
-            margin: 40px 0;
-            min-height: 450px;
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.15);
+            padding: 120px 40px 60px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 72px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-text p {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(147, 51, 234, 0.3);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 2px solid var(--primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 1s ease;
+        }
+
+        .floating-card {
+            background: white;
+            border-radius: 30px;
+            padding: 60px;
+            box-shadow: 0 30px 80px rgba(147, 51, 234, 0.15);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .hero-carousel::before {
+        .floating-card::before {
             content: '';
             position: absolute;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(147, 51, 234, 0.05) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            background: linear-gradient(45deg, transparent, rgba(147, 51, 234, 0.05), transparent);
+            animation: shimmer 3s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        @keyframes shimmer {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .carousel-content {
+        .card-icon {
+            font-size: 100px;
+            margin-bottom: 20px;
+            animation: breathe 3s ease-in-out infinite;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .card-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .card-text {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 100px 40px;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-header h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #666;
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, var(--light), white);
+            border-radius: 30px;
+            padding: 50px 40px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(147, 51, 234, 0.1);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(147, 51, 234, 0.2);
+            border-color: var(--primary);
+        }
+
+        .service-icon {
+            font-size: 64px;
+            margin-bottom: 25px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .service-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .service-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '🪷';
+            position: absolute;
+            font-size: 400px;
+            opacity: 0.1;
+            top: -100px;
+            right: -100px;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
             text-align: center;
             position: relative;
             z-index: 1;
         }
 
-        .carousel-content h2 {
+        .cta-content h2 {
             font-size: 48px;
-            background: linear-gradient(135deg, #9333ea, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
             font-weight: 700;
+            color: white;
+            margin-bottom: 25px;
         }
 
-        .carousel-content p {
-            font-size: 18px;
-            color: #6b7280;
-            margin-top: 10px;
+        .cta-content p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
         }
 
-        .carousel-controls {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .carousel-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(147, 51, 234, 0.3);
-            cursor: pointer;
+        .btn-white {
+            background: white;
+            color: var(--primary);
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
             transition: all 0.3s ease;
         }
 
-        .carousel-dot.active {
-            background: #9333ea;
-            width: 30px;
-            border-radius: 6px;
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
         }
 
-        /* Shortcuts Section */
-        .shortcuts {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-            margin: 60px 0;
-            padding: 40px 0;
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 40px 30px;
         }
 
-        .shortcut-card {
-            background: white;
-            border-radius: 50%;
-            width: 220px;
-            height: 220px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .footer-content {
+            max-width: 1400px;
             margin: 0 auto;
-            box-shadow: 0 15px 40px rgba(147, 51, 234, 0.12);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid rgba(147, 51, 234, 0.1);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .shortcut-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #9333ea, #c084fc);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary);
         }
 
-        .shortcut-card:hover {
-            transform: translateY(-15px) scale(1.05);
-            box-shadow: 0 25px 60px rgba(147, 51, 234, 0.25);
-            border-color: transparent;
-        }
-
-        .shortcut-card:hover::before {
-            opacity: 1;
-        }
-
-        .shortcut-content {
-            text-align: center;
-            position: relative;
-            z-index: 1;
+        .footer-section p,
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            line-height: 2;
             transition: color 0.3s ease;
         }
 
-        .shortcut-card:hover .shortcut-content {
-            color: white;
+        .footer-section a:hover {
+            color: var(--secondary);
         }
 
-        .shortcut-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-            filter: grayscale(30%);
-            transition: filter 0.3s ease;
-        }
-
-        .shortcut-card:hover .shortcut-icon {
-            filter: grayscale(0%) brightness(1.2);
-        }
-
-        .shortcut-content h3 {
-            font-size: 20px;
-            font-weight: 600;
-        }
-
-        /* Floating elements decoration */
-        .floating-lotus {
-            position: fixed;
-            font-size: 40px;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .floating-lotus:nth-child(1) {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-lotus:nth-child(2) {
-            top: 60%;
-            right: 15%;
-            animation-delay: 2s;
-        }
-
-        .floating-lotus:nth-child(3) {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) rotate(0deg);
-            }
-            50% {
-                transform: translateY(-20px) rotate(5deg);
-            }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(40px);
             }
             to {
                 opacity: 1;
@@ -404,258 +505,218 @@
             }
         }
 
-        .fade-in-up {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        @keyframes slideInFromRight {
+        @keyframes fadeInRight {
             from {
-                transform: translateX(100%);
                 opacity: 0;
+                transform: translateX(40px);
             }
             to {
-                transform: translateX(0);
                 opacity: 1;
+                transform: translateX(0);
             }
         }
 
-        /* Responsive Mobile */
-        @media (max-width: 968px) {
-            .hamburger {
-                display: flex;
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
             }
 
-            .header-btn span {
-                display: none;
+            .hero-text h1 {
+                font-size: 56px;
             }
 
-            .header-btn {
-                padding: 12px;
-                font-size: 20px;
-            }
-
-            nav {
+            .nav-links {
                 position: fixed;
                 top: 0;
                 right: -100%;
-                width: 300px;
                 height: 100vh;
-                margin: 0;
-                border-radius: 0;
-                padding: 100px 20px 20px;
-                background: linear-gradient(135deg, #9333ea, #c084fc);
-                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
-                transition: right 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-                z-index: 999;
+                width: 300px;
+                background: white;
+                flex-direction: column;
+                padding: 100px 40px;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+                transition: right 0.4s ease;
             }
 
-            nav.active {
+            .nav-links.active {
                 right: 0;
             }
 
-            .nav-menu {
-                flex-direction: column;
-                gap: 15px;
+            .mobile-toggle {
+                display: flex;
             }
 
-            .nav-menu li {
-                opacity: 0;
-                transform: translateX(50px);
-                animation: slideInFromRight 0.5s forwards;
-            }
-
-            nav.active .nav-menu li:nth-child(1) { animation-delay: 0.1s; }
-            nav.active .nav-menu li:nth-child(2) { animation-delay: 0.15s; }
-            nav.active .nav-menu li:nth-child(3) { animation-delay: 0.2s; }
-            nav.active .nav-menu li:nth-child(4) { animation-delay: 0.25s; }
-            nav.active .nav-menu li:nth-child(5) { animation-delay: 0.3s; }
-            nav.active .nav-menu li:nth-child(6) { animation-delay: 0.35s; }
-            nav.active .nav-menu li:nth-child(7) { animation-delay: 0.4s; }
-            nav.active .nav-menu li:nth-child(8) { animation-delay: 0.45s; }
-            nav.active .nav-menu li:nth-child(9) { animation-delay: 0.5s; }
-            nav.active .nav-menu li:nth-child(10) { animation-delay: 0.55s; }
-
-            .nav-menu li a {
-                text-align: center;
-                background: rgba(255, 255, 255, 0.2);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255, 255, 255, 0.3);
-                font-size: 18px;
-                padding: 18px;
-            }
-
-            .nav-menu li a:hover {
-                background: rgba(255, 255, 255, 0.3);
-                transform: translateX(-5px);
-            }
-
-            /* Mobile Overlay */
-            .nav-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.5);
-                backdrop-filter: blur(3px);
-                opacity: 0;
-                visibility: hidden;
-                transition: all 0.3s ease;
-                z-index: 998;
-            }
-
-            .nav-overlay.active {
-                opacity: 1;
-                visibility: visible;
-            }
-
-            .logo-text {
-                font-size: 20px;
-            }
-
-            .logo-image {
-                width: 40px;
-                height: 40px;
-                font-size: 20px;
-            }
-
-            .logo {
-                padding: 12px 20px;
+            .cta-button {
+                display: none;
             }
         }
 
         @media (max-width: 768px) {
-            .header-content {
-                padding: 15px 0;
-            }
-
-            .hero-carousel {
-                padding: 40px 20px;
-                min-height: 350px;
-            }
-
-            .carousel-content h2 {
-                font-size: 32px;
-            }
-
-            .carousel-content p {
-                font-size: 16px;
-            }
-
-            .shortcut-card {
-                width: 180px;
-                height: 180px;
-            }
-
-            .shortcut-icon {
+            .hero-text h1 {
                 font-size: 40px;
             }
 
-            .shortcut-content h3 {
+            .hero-text p {
                 font-size: 18px;
             }
-        }
 
-        @media (max-width: 480px) {
-            nav {
-                width: 85%;
+            .hero-buttons {
+                flex-direction: column;
             }
 
-            .header-btn {
-                padding: 10px;
-                font-size: 18px;
+            .section-header h2 {
+                font-size: 36px;
+            }
+
+            .cta-content h2 {
+                font-size: 36px;
+            }
+
+            .floating-card {
+                padding: 40px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Decorative floating elements -->
-    <div class="floating-lotus">🪷</div>
-    <div class="floating-lotus">🪷</div>
-    <div class="floating-lotus">🪷</div>
-
-    <!-- Mobile Nav Overlay -->
-    <div class="nav-overlay" id="navOverlay"></div>
-
-    <header id="header">
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-image">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3C!-- Fiamme/vapore sopra --%3E%3Cpath d='M100 20 Q95 10 90 5 Q95 15 100 20' fill='%23444'/%3E%3Cpath d='M100 20 Q105 10 110 5 Q105 15 100 20' fill='%23444'/%3E%3Cpath d='M85 30 Q82 20 80 15 Q83 22 85 30' fill='%23444'/%3E%3Cpath d='M115 30 Q118 20 120 15 Q117 22 115 30' fill='%23444'/%3E%3C!-- Fiore di loto centrale --%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(0 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(36 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%23a855f7' transform='rotate(72 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(108 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%23a855f7' transform='rotate(144 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(180 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%23a855f7' transform='rotate(216 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(252 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%23a855f7' transform='rotate(288 100 100)'/%3E%3Cellipse cx='100' cy='100' rx='15' ry='35' fill='%239333ea' transform='rotate(324 100 100)'/%3E%3C!-- Petali esterni scuri --%3E%3Cpath d='M70 85 Q60 75 55 70 Q65 78 70 85' fill='%23444'/%3E%3Cpath d='M130 85 Q140 75 145 70 Q135 78 130 85' fill='%23444'/%3E%3Cpath d='M85 70 Q75 60 70 55 Q80 65 85 70' fill='%23444'/%3E%3Cpath d='M115 70 Q125 60 130 55 Q120 65 115 70' fill='%23444'/%3E%3C!-- Fiamme/vapore sotto --%3E%3Cpath d='M100 180 Q95 170 90 165 Q95 172 100 180' fill='%23444'/%3E%3Cpath d='M100 180 Q105 170 110 165 Q105 172 100 180' fill='%23444'/%3E%3Cpath d='M85 160 Q82 150 80 145 Q83 152 85 160' fill='%23444'/%3E%3Cpath d='M115 160 Q118 150 120 145 Q117 152 115 160' fill='%23444'/%3E%3C/svg%3E" alt="Fior di Loto">
-                    </div>
-                    <div class="logo-text">Fior di Loto</div>
-                </div>
-                <div class="header-buttons">
-                    <a href="http://" class="header-btn">
-                        <span>📞</span> <span>Telefono centro</span>
-                    </a>
-                    <a href="http://" class="header-btn">
-                        <span>✉️</span> <span>Indirizzo email</span>
-                    </a>
-                    <div class="hamburger" id="hamburger">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="container">
-        <nav id="nav" class="fade-in-up">
-            <ul class="nav-menu">
-                <li><a href="http://">Home</a></li>
-                <li><a href="http://">Chi siamo</a></li>
-                <li><a href="http://">Il nostro centro</a></li>
-                <li><a href="http://">Discipline</a></li>
-                <li><a href="http://">Calendario corsi</a></li>
-                <li><a href="http://">Trattamenti</a></li>
-                <li><a href="http://">Formazione</a></li>
-                <li><a href="http://">Eventi</a></li>
-                <li><a href="http://">Spotify</a></li>
-                <li><a href="http://">Contatti</a></li>
-            </ul>
-        </nav>
-
-        <div class="hero-carousel fade-in-up">
-            <div class="carousel-content">
-                <h2>Benvenuti al Fior di Loto</h2>
-                <p>Il tuo spazio di benessere, yoga e meditazione</p>
-            </div>
-            <div class="carousel-controls">
-                <span class="carousel-dot active"></span>
-                <span class="carousel-dot"></span>
-                <span class="carousel-dot"></span>
-            </div>
-        </div>
-
-        <div class="shortcuts">
-            <div class="shortcut-card fade-in-up" style="animation-delay: 0.1s">
-                <div class="shortcut-content">
-                    <div class="shortcut-icon">🧘‍♀️</div>
-                    <h3>Corsi Yoga</h3>
-                </div>
-            </div>
-            <div class="shortcut-card fade-in-up" style="animation-delay: 0.2s">
-                <div class="shortcut-content">
-                    <div class="shortcut-icon">🕉️</div>
-                    <h3>Meditazione</h3>
-                </div>
-            </div>
-            <div class="shortcut-card fade-in-up" style="animation-delay: 0.3s">
-                <div class="shortcut-content">
-                    <div class="shortcut-icon">💆‍♀️</div>
-                    <h3>Benessere</h3>
-                </div>
-            </div>
-        </div>
+    <div class="bg-animation">
+        <div class="lotus-float">🪷</div>
+        <div class="lotus-float">🪷</div>
+        <div class="lotus-float">🪷</div>
+        <div class="lotus-float">🪷</div>
     </div>
 
+    <header id="header">
+        <nav>
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 20 Q95 10 90 5 Q95 15 100 20" fill="#444"/>
+                    <path d="M100 20 Q105 10 110 5 Q105 15 100 20" fill="#444"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#9333ea" transform="rotate(0 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#9333ea" transform="rotate(36 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#a855f7" transform="rotate(72 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#9333ea" transform="rotate(108 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#a855f7" transform="rotate(144 100 100)"/>
+                    <ellipse cx="100" cy="100" rx="15" ry="35" fill="#9333ea" transform="rotate(180 100 100)"/>
+                    <path d="M100 180 Q95 170 90 165 Q95 172 100 180" fill="#444"/>
+                    <path d="M100 180 Q105 170 110 165 Q105 172 100 180" fill="#444"/>
+                </svg>
+                <span class="brand-name">Fior di Loto</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="http://">Chi Siamo</a></li>
+                <li><a href="http://">Corsi</a></li>
+                <li><a href="http://">Orari</a></li>
+                <li><a href="http://">Contatti</a></li>
+            </ul>
+            <a href="http://" class="cta-button">Prenota Ora</a>
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Il Tuo Viaggio Verso il Benessere</h1>
+                <p>Scopri l'armonia tra corpo e mente attraverso lo yoga, la meditazione e pratiche olistiche nel nostro spazio dedicato alla tua serenità.</p>
+                <div class="hero-buttons">
+                    <a href="http://" class="btn-primary">Inizia il Percorso</a>
+                    <a href="http://" class="btn-secondary">Scopri di Più</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card">
+                    <div class="card-icon">🧘‍♀️</div>
+                    <div class="card-title">Prima Lezione Gratuita</div>
+                    <div class="card-text">Vieni a provare i nostri corsi senza impegno e inizia il tuo percorso di benessere</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="section-header">
+            <h2>Le Nostre Discipline</h2>
+            <p>Esplora la varietà di pratiche che offriamo per il tuo benessere fisico e mentale</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🧘</div>
+                <div class="service-title">Hatha Yoga</div>
+                <div class="service-desc">Pratica tradizionale che unisce posizioni fisiche e tecniche di respirazione</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🕉️</div>
+                <div class="service-title">Meditazione</div>
+                <div class="service-desc">Trova la tua pace interiore attraverso tecniche guidate di mindfulness</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">💆‍♀️</div>
+                <div class="service-title">Trattamenti Olistici</div>
+                <div class="service-desc">Massaggi e terapie naturali per il riequilibrio energetico</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌅</div>
+                <div class="service-title">Vinyasa Flow</div>
+                <div class="service-desc">Sequenze dinamiche che collegano movimento e respiro</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎋</div>
+                <div class="service-title">Yin Yoga</div>
+                <div class="service-desc">Pratica lenta e meditativa per rilassare corpo e mente profondamente</div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <div class="service-title">Workshops</div>
+                <div class="service-desc">Eventi speciali e approfondimenti con insegnanti qualificati</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Inizia Oggi il Tuo Percorso</h2>
+            <p>Unisciti alla nostra comunità e trasforma la tua vita con pratiche che nutrono corpo, mente e spirito</p>
+            <a href="http://" class="btn-white">Contattaci Ora</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Fior di Loto</h3>
+                <p>Il tuo centro di yoga e benessere dove corpo e mente si incontrano in armonia.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Link Utili</h3>
+                <p><a href="http://">Chi Siamo</a></p>
+                <p><a href="http://">I Nostri Corsi</a></p>
+                <p><a href="http://">Orari</a></p>
+                <p><a href="http://">Blog</a></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contatti</h3>
+                <p>📧 info@fiordiloto.it</p>
+                <p>📞 +39 123 456 7890</p>
+                <p>📍 Via del Benessere, 123</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fior di Loto. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
     <script>
-        // Scroll effect for header
         const header = document.getElementById('header');
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -664,45 +725,16 @@
             }
         });
 
-        // Carousel dots functionality
-        const dots = document.querySelectorAll('.carousel-dot');
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                dots.forEach(d => d.classList.remove('active'));
-                dot.classList.add('active');
-            });
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
 
-        // Hamburger menu functionality
-        const hamburger = document.getElementById('hamburger');
-        const nav = document.getElementById('nav');
-        const navOverlay = document.getElementById('navOverlay');
-        const navLinks = document.querySelectorAll('.nav-menu a');
-
-        function toggleMenu() {
-            hamburger.classList.toggle('active');
-            nav.classList.toggle('active');
-            navOverlay.classList.toggle('active');
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
-        }
-
-        hamburger.addEventListener('click', toggleMenu);
-        navOverlay.addEventListener('click', toggleMenu);
-
-        // Close menu when clicking on a link
-        navLinks.forEach(link => {
+        document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
-                if (window.innerWidth <= 968) {
-                    toggleMenu();
-                }
+                mobileToggle.classList.remove('active');
+                navLinks.classList.remove('active');
             });
-        });
-
-        // Close menu on window resize if open
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 968 && nav.classList.contains('active')) {
-                toggleMenu();
-            }
         });
     </script>
 </body>
