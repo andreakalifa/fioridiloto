@@ -25,6 +25,12 @@
             font-family: 'Poppins', sans-serif;
             background: var(--light);
             overflow-x: hidden;
+            padding-top: 0;
+            transition: padding-top 0.3s ease;
+        }
+
+        body.banner-visible {
+            padding-top: 70px;
         }
 
         /* Animated Background */
@@ -57,6 +63,135 @@
             75% { transform: translateY(-40px) rotate(3deg) scale(1.05); }
         }
 
+        /* Template Switcher Banner */
+        .template-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 15px 20px;
+            z-index: 2000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .template-banner.hidden {
+            transform: translateY(-100%);
+        }
+
+        .banner-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .banner-title {
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .template-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .template-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .template-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .template-btn.active {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .close-banner {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-banner:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .banner-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .banner-left {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .template-buttons {
+                width: 100%;
+            }
+
+            .template-btn {
+                flex: 1;
+                min-width: calc(50% - 5px);
+                text-align: center;
+            }
+
+            .close-banner {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+        }
+
         /* Header */
         header {
             position: fixed;
@@ -66,6 +201,10 @@
             padding: 20px 0;
             z-index: 1000;
             transition: all 0.3s ease;
+        }
+
+        body.banner-visible header {
+            top: 70px;
         }
 
         header.scrolled {
@@ -581,6 +720,24 @@
     </style>
 </head>
 <body>
+    <!-- Template Switcher Banner -->
+    <div class="template-banner" id="templateBanner">
+        <div class="banner-content">
+            <div class="banner-left">
+                <div class="banner-title">
+                    <span>🎨</span> Scegli Template:
+                </div>
+                <div class="template-buttons">
+                    <a href="index.html" class="template-btn active">Template 1</a>
+                    <a href="index2.html" class="template-btn">Template 2</a>
+                    <a href="index3.html" class="template-btn">Template 3</a>
+                    <a href="index4.html" class="template-btn">Template 4</a>
+                </div>
+            </div>
+            <div class="close-banner" id="closeBanner">×</div>
+        </div>
+    </div>
+
     <div class="bg-animation">
         <div class="lotus-float">🪷</div>
         <div class="lotus-float">🪷</div>
@@ -716,7 +873,25 @@
         const header = document.getElementById('header');
         const mobileToggle = document.getElementById('mobileToggle');
         const navLinks = document.getElementById('navLinks');
+        const templateBanner = document.getElementById('templateBanner');
+        const closeBanner = document.getElementById('closeBanner');
 
+        // Verifica se il banner è stato chiuso in precedenza
+        const bannerClosed = sessionStorage.getItem('bannerClosed');
+        if (!bannerClosed) {
+            document.body.classList.add('banner-visible');
+        } else {
+            templateBanner.classList.add('hidden');
+        }
+
+        // Chiudi banner
+        closeBanner.addEventListener('click', () => {
+            templateBanner.classList.add('hidden');
+            document.body.classList.remove('banner-visible');
+            sessionStorage.setItem('bannerClosed', 'true');
+        });
+
+        // Scroll header effect
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -725,16 +900,29 @@
             }
         });
 
+        // Mobile menu toggle
         mobileToggle.addEventListener('click', () => {
             mobileToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
+        // Close mobile menu on link click
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 mobileToggle.classList.remove('active');
                 navLinks.classList.remove('active');
             });
+        });
+
+        // Highlight active template
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.template-btn').forEach(btn => {
+            const btnHref = btn.getAttribute('href');
+            if (btnHref === currentPage || (currentPage === '' && btnHref === 'index.html')) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
         });
     </script>
 </body>
