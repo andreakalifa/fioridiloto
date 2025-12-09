@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fior di Loto - Zen Experience</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #9333ea;
+            --secondary: #c084fc;
+            --dark: #4a1d7a;
+            --text: #2d2d2d;
+            --light-bg: #fdfcff;
+        }
+
+        body {
+            font-family: 'Zen Kaku Gothic New', sans-serif;
+            background: var(--light-bg);
+            color: var(--text);
+            overflow-x: hidden;
+            padding-top: 0;
+            transition: padding-top 0.3s ease;
+        }
+
+        body.banner-visible {
+            padding-top: 70px;
+        }
+
+        /* Template Banner */
+        .template-banner {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            color: white;
+            padding: 15px 20px;
+            z-index: 2000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .template-banner.hidden {
+            transform: translateY(-100%);
+        }
+
+        .banner-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .banner-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex: 1;
+        }
+
+        .banner-title {
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .template-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .template-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .template-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .template-btn.active {
+            background: white;
+            color: var(--primary);
+            border-color: white;
+        }
+
+        .close-banner {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .close-banner:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Vertical Navigation */
+        .vertical-nav {
+            position: fixed;
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(147, 51, 234, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-dot:hover,
+        .nav-dot.active {
+            background: var(--primary);
+            transform: scale(1.5);
+        }
+
+        .nav-dot::after {
+            content: attr(data-label);
+            position: absolute;
+            left: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            color: var(--dark);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .nav-dot:hover::after {
+            opacity: 1;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 40px;
+            position: relative;
+        }
+
+        .section-content {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, #fdfcff 0%, #f5f3ff 100%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-text-side {
+            text-align: left;
+        }
+
+        .hero-eyebrow {
+            color: var(--primary);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 80px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 20px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 40px rgba(147, 51, 234, 0.3);
+        }
+
+        .hero-cta:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(147, 51, 234, 0.5);
+        }
+
+        .hero-visual-side {
+            position: relative;
+        }
+
+        .floating-lotus {
+            width: 400px;
+            height: 400px;
+            position: relative;
+            animation: levitate 6s ease-in-out infinite;
+        }
+
+        @keyframes levitate {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        .lotus-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(192, 132, 252, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 200px;
+            position: relative;
+        }
+
+        .lotus-circle::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            border: 2px solid rgba(147, 51, 234, 0.2);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* About Section */
+        .about-section {
+            background: white;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .section-number {
+            font-size: 120px;
+            font-weight: 700;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(192, 132, 252, 0.1));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .section-title {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+
+        .section-description {
+            font-size: 20px;
+            color: #666;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: var(--light-bg);
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .feature-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            background: var(--light-bg);
+        }
+
+        .courses-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .courses-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .courses-list {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 50px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .course-card:hover {
+            border-color: var(--primary);
+            transform: translateX(20px);
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.15);
+        }
+
+        .course-info {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .course-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary);
+            opacity: 0.3;
+        }
+
+        .course-details h3 {
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .course-details p {
+            color: #666;
+        }
+
+        .course-arrow {
+            font-size: 32px;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .course-card:hover .course-arrow {
+            transform: translateX(10px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact-content .section-title {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .contact-content .section-description {
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 60px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: center;
+        }
+
+        .contact-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .contact-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+        }
+
+        .contact-value {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .contact-button {
+            margin-top: 60px;
+            display: inline-block;
+            background: white;
+            color: var(--primary);
+            padding: 20px 60px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 200;
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 300px;
+            height: 100vh;
+            background: white;
+            z-index: 150;
+            padding: 100px 40px;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.active {
+            right: 0;
+        }
+
+        .mobile-nav-item {
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .vertical-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn,
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-title {
+                font-size: 56px;
+            }
+
+            .floating-lotus {
+                width: 300px;
+                height: 300px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .courses-list {
+                max-width: 100%;
+            }
+
+            .course-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .course-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body.banner-visible {
+                padding-top: 120px;
+            }
+
+            .banner-content {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .banner-left {
+                flex-direction: column;
+                align-items: flex-start;
+                width: 100%;
+                gap: 10px;
+            }
+
+            .template-buttons {
+                width: 100%;
+            }
+
+            .template-btn {
+                flex: 1;
+                min-width: calc(50% - 5px);
+                text-align: center;
+            }
+
+            .close-banner {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 36px;
+            }
+
+            .section-number {
+                font-size: 80px;
+            }
+
+            .lotus-circle {
+                font-size: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Template Banner -->
+    <div class="template-banner" id="templateBanner">
+        <div class="banner-content">
+            <div class="banner-left">
+                <div class="banner-title">
+                    <span>🎨</span> Scegli Template:
+                </div>
+                <div class="template-buttons">
+                    <a href="index.html" class="template-btn">Template 1</a>
+                    <a href="index2.html" class="template-btn active">Template 2</a>
+                    <a href="index3.html" class="template-btn">Template 3</a>
+                </div>
+            </div>
+            <div class="close-banner" id="closeBanner">×</div>
+        </div>
+    </div>
+
+    <!-- Vertical Navigation -->
+    <nav class="vertical-nav">
+        <div class="nav-dot active" data-label="Home" data-section="0"></div>
+        <div class="nav-dot" data-label="Chi Siamo" data-section="1"></div>
+        <div class="nav-dot" data-label="Corsi" data-section="2"></div>
+        <div class="nav-dot" data-label="Contatti" data-section="3"></div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <div class="mobile-menu-btn" id="mobileMenuBtn">☰</div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-item" data-section="0">Home</div>
+        <div class="mobile-nav-item" data-section="1">Chi Siamo</div>
+        <div class="mobile-nav-item" data-section="2">Corsi</div>
+        <div class="mobile-nav-item" data-section="3">Contatti</div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" data-section="0">
+        <div class="section-content">
+            <div class="hero-grid">
+                <div class="hero-text-side">
+                    <div class="hero-eyebrow">Benvenuti</div>
+                    <h1 class="hero-title">Fior di Loto</h1>
+                    <p class="hero-subtitle">Un viaggio verso l'equilibrio interiore attraverso lo yoga e la meditazione</p>
+                    <a href="http://" class="hero-cta">
+                        <span>Inizia il Percorso</span>
+                        <span>→</span>
+                    </a>
+                </div>
+                <div class="hero-visual-side">
+                    <div class="floating-lotus">
+                        <div class="lotus-circle">🪷</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" data-section="1">
+        <div class="section-content">
+            <div class="about-content">
+                <div class="section-number">01</div>
+                <h2 class="section-title">Chi Siamo</h2>
+                <p class="section-description">
+                    Un centro dedicato al benessere olistico dove corpo, mente e spirito si incontrano. 
+                    Offriamo un ambiente sereno e accogliente per la tua pratica quotidiana.
+                </p>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🧘‍♀️</div>
+                        <div class="feature-title">Insegnanti Qualificati</div>
+                        <div class="feature-text">Esperti certificati con anni di esperienza</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌿</div>
+                        <div class="feature-title">Ambiente Naturale</div>
+                        <div class="feature-text">Spazi luminosi e rilassanti</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-title">Approccio Olistico</div>
+                        <div class="feature-text">Cura completa di corpo e mente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section" data-section="2">
+        <div class="section-content">
+            <div class="courses-container">
+                <div class="courses-header">
+                    <div class="section-number">02</div>
+                    <h2 class="section-title">I Nostri Corsi</h2>
+                    <p class="section-description">Scopri la pratica perfetta per te</p>
+                </div>
+                <div class="courses-list">
+                    <div class="course-card">
+                        <div class="course-info">
+                            <div class="course-number">01</div>
+                            <div class="course-details">
+                                <h3>Hatha Yoga</h3>
+                                <p>Pratica tradizionale per tutti i livelli</p>
+                            </div>
+                        </div>
+                        <div class="course-arrow">→</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-info">
+                            <div class="course-number">02</div>
+                            <div class="course-details">
+                                <h3>Vinyasa Flow</h3>
+                                <p>Movimento fluido sincronizzato con il respiro</p>
+                            </div>
+                        </div>
+                        <div class="course-arrow">→</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-info">
+                            <div class="course-number">03</div>
+                            <div class="course-details">
+                                <h3>Yin Yoga</h3>
+                                <p>Rilassamento profondo e stretching</p>
+                            </div>
+                        </div>
+                        <div class="course-arrow">→</div>
+                    </div>
+                    <div class="course-card">
+                        <div class="course-info">
+                            <div class="course-number">04</div>
+                            <div class="course-details">
+                                <h3>Meditazione</h3>
+                                <p>Pratiche guidate di mindfulness</p>
+                            </div>
+                        </div>
+                        <div class="course-arrow">→</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" data-section="3">
+        <div class="section-content">
+            <div class="contact-content">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Inizia Oggi</h2>
+                <p class="section-description">
+                    Siamo qui per guidarti nel tuo percorso di benessere
+                </p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-value">info@fiordiloto.it</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-label">Telefono</div>
+                        <div class="contact-value">+39 123 456 7890</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-label">Indirizzo</div>
+                        <div class="contact-value">Via del Benessere, 123</div>
+                    </div>
+                </div>
+                <a href="http://" class="contact-button">Prenota una Lezione</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const templateBanner = document.getElementById('templateBanner');
+        const closeBanner = document.getElementById('closeBanner');
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+        const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+
+        // Banner functionality
+        const bannerClosed = sessionStorage.getItem('bannerClosed');
+        if (!bannerClosed) {
+            document.body.classList.add('banner-visible');
+        } else {
+            templateBanner.classList.add('hidden');
+        }
+
+        closeBanner.addEventListener('click', () => {
+            templateBanner.classList.add('hidden');
+            document.body.classList.remove('banner-visible');
+            sessionStorage.setItem('bannerClosed', 'true');
+        });
+
+        // Mobile menu
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+        });
+
+        // Navigation
+        function scrollToSection(index) {
+            sections[index].scrollIntoView({ behavior: 'smooth' });
+            mobileMenu.classList.remove('active');
+        }
+
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const section = parseInt(dot.dataset.section);
+                scrollToSection(section);
+            });
+        });
+
+        mobileNavItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const section = parseInt(item.dataset.section);
+                scrollToSection(section);
+            });
+        });
+
+        // Active section detection
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const index = Array.from(sections).indexOf(entry.target);
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    if (navDots[index]) {
+                        navDots[index].classList.add('active');
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Highlight active template
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.template-btn').forEach(btn => {
+            const btnHref = btn.getAttribute('href');
+            if (btnHref === currentPage) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
