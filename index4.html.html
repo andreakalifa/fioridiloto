@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fior di Loto - Dark Immersive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #c084fc;
+            --secondary: #9333ea;
+            --dark: #0f0718;
+            --darker: #1a0b2e;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark);
+            color: #e9d5ff;
+            overflow-x: hidden;
+            padding-top: 0;
+            transition: padding-top 0.3s;
+        }
+
+        body.banner-visible { padding-top: 70px; }
+
+        .bg-gradient {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(192, 132, 252, 0.1), transparent 50%), var(--dark);
+        }
+
+        /* Banner */
+        .template-banner {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: linear-gradient(135deg, var(--darker), var(--secondary));
+            color: white; padding: 15px 20px; z-index: 2000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            transform: translateY(0); transition: transform 0.3s;
+        }
+        .template-banner.hidden { transform: translateY(-100%); }
+        .banner-content {
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;
+        }
+        .banner-left { display: flex; align-items: center; gap: 20px; flex: 1; }
+        .banner-title { font-weight: 600; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+        .template-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+        .template-btn {
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white;
+            border: 2px solid rgba(255,255,255,0.2); padding: 8px 20px; border-radius: 20px;
+            text-decoration: none; font-weight: 600; font-size: 14px; transition: all 0.3s; cursor: pointer;
+        }
+        .template-btn:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+        .template-btn.active { background: white; color: var(--secondary); border-color: white; }
+        .close-banner {
+            background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.2); color: white;
+            width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s; font-size: 20px; font-weight: bold; line-height: 1;
+        }
+        .close-banner:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg); }
+
+        /* Header */
+        .site-header {
+            position: fixed; top: 20px; left: 40px; z-index: 100;
+            display: flex; align-items: center; gap: 15px;
+        }
+        body.banner-visible .site-header { top: 90px; }
+        .logo-icon { font-size: 40px; animation: pulse-glow 3s ease-in-out infinite; }
+        @keyframes pulse-glow {
+            0%, 100% { filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.5)); }
+            50% { filter: drop-shadow(0 0 20px rgba(192, 132, 252, 0.8)); }
+        }
+        .logo-text { font-size: 24px; font-weight: 700; color: var(--primary); }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+        }
+        .hero-left {
+            display: flex; flex-direction: column; justify-content: center; padding: 100px 80px;
+            background: linear-gradient(135deg, rgba(26,11,46,0.8), rgba(15,7,24,0.9));
+        }
+        .hero-label {
+            padding: 8px 20px; background: rgba(192,132,252,0.2); border: 1px solid var(--primary);
+            border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 2px; margin-bottom: 30px; width: fit-content;
+        }
+        .hero-title {
+            font-size: 72px; font-weight: 800; line-height: 1.1; margin-bottom: 30px;
+            background: linear-gradient(135deg, white, var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .hero-desc { font-size: 20px; line-height: 1.8; color: rgba(233,213,255,0.8); margin-bottom: 50px; max-width: 500px; }
+        .hero-actions { display: flex; gap: 20px; }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white; padding: 18px 40px; border-radius: 50px; text-decoration: none;
+            font-weight: 600; transition: all 0.3s; box-shadow: 0 10px 30px rgba(192,132,252,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(192,132,252,0.5); }
+        .btn-secondary {
+            background: transparent; color: var(--primary); padding: 18px 40px; border-radius: 50px;
+            text-decoration: none; font-weight: 600; border: 2px solid var(--primary); transition: all 0.3s;
+        }
+        .btn-secondary:hover { background: rgba(192,132,252,0.1); }
+
+        .hero-right { position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-visual { position: relative; width: 500px; height: 500px; }
+        .visual-circle {
+            position: absolute; border-radius: 50%; border: 2px solid rgba(192,132,252,0.3);
+        }
+        .visual-circle:nth-child(1) { width: 100%; height: 100%; animation: rotate-circle 20s linear infinite; }
+        .visual-circle:nth-child(2) { width: 80%; height: 80%; top: 10%; left: 10%; animation: rotate-circle 15s linear infinite reverse; }
+        .visual-circle:nth-child(3) { width: 60%; height: 60%; top: 20%; left: 20%; animation: rotate-circle 10s linear infinite; }
+        @keyframes rotate-circle { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .central-lotus {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            font-size: 150px; animation: float-lotus 6s ease-in-out infinite;
+        }
+        @keyframes float-lotus {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -55%) scale(1.1); }
+        }
+
+        /* Services */
+        .services { padding: 150px 80px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 100px; }
+        .section-label { color: var(--primary); font-size: 14px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+        .section-title { font-size: 56px; font-weight: 800; margin-bottom: 20px; color: white; }
+        .section-subtitle { font-size: 20px; color: rgba(233,213,255,0.7); max-width: 600px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .service-card {
+            background: rgba(26,11,46,0.5); border: 1px solid rgba(192,132,252,0.2); border-radius: 20px;
+            padding: 50px 40px; transition: all 0.4s; position: relative; overflow: hidden;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(192,132,252,0.1), transparent); opacity: 0; transition: opacity 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-10px); border-color: var(--primary); box-shadow: 0 20px 60px rgba(192,132,252,0.2);
+        }
+        .service-card:hover::before { opacity: 1; }
+        .service-icon { font-size: 56px; margin-bottom: 25px; display: block; }
+        .service-title { font-size: 24px; font-weight: 700; color: white; margin-bottom: 15px; }
+        .service-desc { color: rgba(233,213,255,0.7); line-height: 1.8; margin-bottom: 25px; }
+        .service-link {
+            color: var(--primary); text-decoration: none; font-weight: 600;
+            display: inline-flex; align-items: center; gap: 10px; transition: gap 0.3s;
+        }
+        .service-link:hover { gap: 15px; }
+
+        /* CTA */
+        .cta { padding: 150px 80px; text-align: center; }
+        .cta-content { max-width: 800px; margin: 0 auto; }
+        .cta-title {
+            font-size: 64px; font-weight: 800; margin-bottom: 30px;
+            background: linear-gradient(135deg, white, var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .cta-text { font-size: 20px; color: rgba(233,213,255,0.8); margin-bottom: 50px; }
+
+        /* Footer */
+        footer { padding: 80px; border-top: 1px solid rgba(192,132,252,0.2); }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+        .footer-brand h3 { font-size: 24px; color: var(--primary); margin-bottom: 15px; }
+        .footer-brand p { color: rgba(233,213,255,0.6); line-height: 1.8; }
+        .footer-section h4 { color: white; margin-bottom: 20px; font-size: 16px; }
+        .footer-section a { display: block; color: rgba(233,213,255,0.6); text-decoration: none; margin-bottom: 10px; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--primary); }
+        .footer-bottom { text-align: center; margin-top: 60px; padding-top: 30px; border-top: 1px solid rgba(192,132,252,0.1); color: rgba(233,213,255,0.4); }
+
+        @media (max-width: 1024px) {
+            .hero { grid-template-columns: 1fr; }
+            .hero-right { min-height: 50vh; }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            body.banner-visible { padding-top: 120px; }
+            .banner-content { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .banner-left { flex-direction: column; align-items: flex-start; width: 100%; gap: 10px; }
+            .template-buttons { width: 100%; }
+            .template-btn { flex: 1; min-width: calc(50% - 5px); text-align: center; }
+            .close-banner { position: absolute; top: 10px; right: 20px; }
+            .hero-left { padding: 60px 30px; }
+            .hero-title { font-size: 48px; }
+            .services, .cta { padding: 80px 30px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 36px; }
+            .cta-title { font-size: 40px; }
+            footer { padding: 60px 30px; }
+            .footer-content { grid-template-columns: 1fr; gap: 40px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+
+    <div class="template-banner" id="templateBanner">
+        <div class="banner-content">
+            <div class="banner-left">
+                <div class="banner-title"><span>🎨</span> Scegli Template:</div>
+                <div class="template-buttons">
+                    <a href="index.html" class="template-btn">Template 1</a>
+                    <a href="index2.html" class="template-btn">Template 2</a>
+                    <a href="index3.html" class="template-btn active">Template 3</a>
+                </div>
+            </div>
+            <div class="close-banner" id="closeBanner">×</div>
+        </div>
+    </div>
+
+    <div class="site-header">
+        <div class="logo-icon">🪷</div>
+        <div class="logo-text">Fior di Loto</div>
+    </div>
+
+    <section class="hero">
+        <div class="hero-left">
+            <div class="hero-label">Centro Yoga & Benessere</div>
+            <h1 class="hero-title">Trasforma la Tua Vita</h1>
+            <p class="hero-desc">Immergiti in un'esperienza unica di benessere dove corpo, mente e spirito si fondono in perfetta armonia.</p>
+            <div class="hero-actions">
+                <a href="http://" class="btn-primary">Inizia Ora</a>
+                <a href="http://" class="btn-secondary">Scopri di Più</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div class="hero-visual">
+                <div class="visual-circle"></div>
+                <div class="visual-circle"></div>
+                <div class="visual-circle"></div>
+                <div class="central-lotus">🪷</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="section-header">
+            <div class="section-label">Le Nostre Pratiche</div>
+            <h2 class="section-title">Discipline per il Benessere</h2>
+            <p class="section-subtitle">Scopri il percorso perfetto per te tra le nostre proposte olistiche</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🧘</span>
+                <h3 class="service-title">Hatha Yoga</h3>
+                <p class="service-desc">Equilibrio tra forza e flessibilità attraverso posizioni e tecniche di respirazione</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🌊</span>
+                <h3 class="service-title">Vinyasa Flow</h3>
+                <p class="service-desc">Sequenze dinamiche che sincronizzano movimento e respiro in modo fluido</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🕉️</span>
+                <h3 class="service-title">Meditazione</h3>
+                <p class="service-desc">Pratiche guidate per raggiungere la pace interiore e la consapevolezza</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🌙</span>
+                <h3 class="service-title">Yin Yoga</h3>
+                <p class="service-desc">Rilassamento profondo attraverso posizioni mantenute e stretching passivo</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💆</span>
+                <h3 class="service-title">Trattamenti</h3>
+                <p class="service-desc">Massaggi e terapie olistiche per il riequilibrio energetico completo</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">✨</span>
+                <h3 class="service-title">Workshops</h3>
+                <p class="service-desc">Eventi speciali e approfondimenti con maestri e insegnanti qualificati</p>
+                <a href="http://" class="service-link">Scopri di più →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="cta-content">
+            <h2 class="cta-title">Inizia il Tuo Viaggio</h2>
+            <p class="cta-text">Prenota la tua prima lezione gratuita e scopri come lo yoga può trasformare la tua vita</p>
+            <a href="http://" class="btn-primary">Prenota Ora</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>Fior di Loto</h3>
+                <p>Centro specializzato in yoga, meditazione e pratiche olistiche per il benessere completo di corpo e mente.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Navigazione</h4>
+                <a href="http://">Home</a>
+                <a href="http://">Chi Siamo</a>
+                <a href="http://">Corsi</a>
+                <a href="http://">Contatti</a>
+            </div>
+            <div class="footer-section">
+                <h4>Servizi</h4>
+                <a href="http://">Yoga</a>
+                <a href="http://">Meditazione</a>
+                <a href="http://">Trattamenti</a>
+                <a href="http://">Eventi</a>
+            </div>
+            <div class="footer-section">
+                <h4>Contatti</h4>
+                <a href="http://">info@fiordiloto.it</a>
+                <a href="http://">+39 123 456 7890</a>
+                <a href="http://">Via del Benessere, 123</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Fior di Loto. Tutti i diritti riservati.</p>
+        </div>
+    </footer>
+
+    <script>
+        const templateBanner = document.getElementById('templateBanner');
+        const closeBanner = document.getElementById('closeBanner');
+        const bannerClosed = sessionStorage.getItem('bannerClosed');
+        if (!bannerClosed) {
+            document.body.classList.add('banner-visible');
+        } else {
+            templateBanner.classList.add('hidden');
+        }
+        closeBanner.addEventListener('click', () => {
+            templateBanner.classList.add('hidden');
+            document.body.classList.remove('banner-visible');
+            sessionStorage.setItem('bannerClosed', 'true');
+        });
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        document.querySelectorAll('.template-btn').forEach(btn => {
+            const btnHref = btn.getAttribute('href');
+            if (btnHref === currentPage) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
