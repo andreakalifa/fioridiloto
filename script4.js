@@ -14,9 +14,56 @@ if (menuToggle) {
     });
 }
 
-// Close mobile menu when clicking on a link
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
+// Mobile dropdown toggle functionality
+const dropdownItems = document.querySelectorAll('.dropdown');
+
+dropdownItems.forEach(dropdown => {
+    const dropdownLink = dropdown.querySelector('a');
+    
+    dropdownLink.addEventListener('click', (e) => {
+        // Only apply dropdown toggle behavior on mobile
+        if (window.innerWidth <= 768) {
+            // If the dropdown has submenu items
+            const dropdownMenu = dropdown.querySelector('.dropdown-menu');
+            if (dropdownMenu && dropdownMenu.children.length > 0) {
+                e.preventDefault(); // Prevent navigation
+                
+                // Close other dropdowns
+                dropdownItems.forEach(item => {
+                    if (item !== dropdown) {
+                        item.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current dropdown
+                dropdown.classList.toggle('active');
+            }
+        }
+    });
+});
+
+// Close mobile menu when clicking on a submenu link
+const dropdownLinks = document.querySelectorAll('.dropdown-menu a');
+dropdownLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            navMenu.classList.remove('active');
+            const spans = menuToggle.querySelectorAll('span');
+            spans[0].style.transform = '';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = '';
+            
+            // Close all dropdowns
+            dropdownItems.forEach(item => {
+                item.classList.remove('active');
+            });
+        }
+    });
+});
+
+// Close mobile menu when clicking on a regular link (non-dropdown)
+const regularNavLinks = document.querySelectorAll('.nav-menu > li:not(.dropdown) > a');
+regularNavLinks.forEach(link => {
     link.addEventListener('click', () => {
         if (window.innerWidth <= 768) {
             navMenu.classList.remove('active');
@@ -98,14 +145,14 @@ window.addEventListener('scroll', () => {
 });
 
 // Form submission handler
-const contactForms = document.querySelectorAll('.contact-form');
-contactForms.forEach(form => {
-    form.addEventListener('submit', (e) => {
+const contactForm = document.querySelector('.contact-form-final');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         alert('Grazie per averci contattato! Ti risponderemo al più presto.');
-        form.reset();
+        contactForm.reset();
     });
-});
+}
 
 // Add animation on scroll
 const observerOptions = {
