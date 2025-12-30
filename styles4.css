@@ -233,15 +233,45 @@ html {
 }
 
 .teachers-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px;
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.teachers-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.teachers-grid::-webkit-scrollbar-track {
+    background: rgba(147, 51, 234, 0.1);
+    border-radius: 10px;
+}
+
+.teachers-grid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.teachers-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
 }
 
 .teacher-card {
-    display: flex; flex-direction: column; gap: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    min-width: 280px;
+    flex-shrink: 0;
 }
 
 .teacher-image {
-    width: 100%; aspect-ratio: 1; border-radius: 15px; overflow: hidden;
+    width: 280px;
+    height: 280px;
+    border-radius: 15px;
+    overflow: hidden;
     background: var(--bg-secondary);
 }
 
@@ -260,11 +290,11 @@ html {
 }
 
 .teacher-info h3 {
-    font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 10px;
+    font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 10px;
 }
 
 .teacher-info p {
-    color: #666; line-height: 1.7; font-size: 15px;
+    color: #666; line-height: 1.7; font-size: 14px;
 }
 
 /* Il Nostro Centro Section */
@@ -701,6 +731,20 @@ footer {
     
     .teachers-grid, .eventi-grid, .spotify-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .teachers-grid {
+        display: flex;
+        overflow-x: auto;
+    }
+    
+    .teacher-card {
+        min-width: 250px;
+    }
+    
+    .teacher-image {
+        width: 250px;
+        height: 250px;
     }
     
     .discipline-content, .trattamento-content, .consulenza-content {
