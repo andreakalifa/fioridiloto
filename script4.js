@@ -6,8 +6,7 @@ console.log('Menu Toggle Element:', menuToggle);
 console.log('Nav Menu Element:', navMenu);
 
 if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', (e) => {
-        e.preventDefault();
+    menuToggle.addEventListener('click', () => {
         console.log('Hamburger menu clicked');
         navMenu.classList.toggle('active');
         console.log('Menu is now active:', navMenu.classList.contains('active'));
