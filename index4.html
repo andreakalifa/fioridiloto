@@ -3,40 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fior di Loto - Template 4</title>
+    <title>Fior di Loto - Centro Yoga & Benessere</title>
     <link rel="stylesheet" href="styles4.css">
 </head>
 <body>
     <div class="bg-gradient"></div>
 
-    <div class="template-banner" id="templateBanner">
-        <div class="banner-content">
-            <div class="banner-left">
-                <div class="banner-title"><span>🎨</span> Scegli Template:</div>
-                <div class="template-buttons">
-                    <a href="index.html" class="template-btn">Template 1</a>
-                    <a href="index2.html" class="template-btn">Template 2</a>
-                    <a href="index3.html" class="template-btn">Template 3</a>
-                    <a href="index4.html" class="template-btn active">Template 4</a>
-                </div>
+    <!-- Navigation Menu -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🪷</span>
+                <span class="logo-text">Fior di Loto</span>
             </div>
-            <div class="close-banner" id="closeBanner">×</div>
+            <button class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#chi-siamo">Chi Siamo</a></li>
+                <li><a href="#centro">Il Nostro Centro</a></li>
+                <li class="dropdown">
+                    <a href="#discipline">Discipline</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#vinyasa">Vinyasa Yoga</a></li>
+                        <li><a href="#power-vinyasa">Power Vinyasa</a></li>
+                        <li><a href="#yin-yoga">Yin Yoga</a></li>
+                        <li><a href="#pilates">Pilates</a></li>
+                        <li><a href="#udan-yoga">Udan Yoga</a></li>
+                        <li><a href="#aerial-move">Aerial Move</a></li>
+                        <li><a href="#yoga-bimbi">Yoga Bimbi</a></li>
+                        <li><a href="#meditazione">Meditazione e Pranayama</a></li>
+                        <li><a href="#lezioni-individuali">Lezioni Individuali</a></li>
+                    </ul>
+                </li>
+                <li><a href="#calendario">Calendario Corsi</a></li>
+                <li class="dropdown">
+                    <a href="#trattamenti">Trattamenti</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#theores">Theores Massage</a></li>
+                        <li><a href="#antistress">Massaggio Olistico Antistress</a></li>
+                        <li><a href="#linfodrenaggio">Linfodrenaggio Medico</a></li>
+                        <li><a href="#reiki">Trattamento Reiki</a></li>
+                        <li><a href="#bagno-sonoro">Bagno Sonoro</a></li>
+                        <li><a href="#riflessologia">Riflessologia Plantare</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#consulenze">Consulenze</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#numerologia">Numerologia</a></li>
+                        <li><a href="#ayurvedica">Ayurvedica</a></li>
+                        <li><a href="#naturopatia">Naturopatia</a></li>
+                        <li><a href="#osteopatia">Osteopatia</a></li>
+                        <li><a href="#astrologia">Astrologia</a></li>
+                    </ul>
+                </li>
+                <li><a href="#eventi">Eventi e Formazione</a></li>
+                <li><a href="#spotify">Spotify</a></li>
+                <li><a href="#contatti">Contatti</a></li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-    <div class="site-header">
-        <div class="logo-icon">🪷</div>
-        <div class="logo-text">Fior di Loto</div>
-    </div>
-
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="home">
         <div class="hero-left">
             <div class="hero-label">Centro Yoga & Benessere</div>
             <h1 class="hero-title">Trasforma la Tua Vita</h1>
             <p class="hero-desc">Immergiti in un'esperienza unica di benessere dove corpo, mente e spirito si fondono in perfetta armonia.</p>
             <div class="hero-actions">
-                <a href="http://" class="btn-primary">Inizia Ora</a>
-                <a href="http://" class="btn-secondary">Scopri di Più</a>
+                <a href="#discipline" class="btn-primary">Scopri le Discipline</a>
+                <a href="#calendario" class="btn-secondary">Prenota una Lezione</a>
             </div>
         </div>
         <div class="hero-right">
@@ -49,85 +89,541 @@
         </div>
     </section>
 
-    <section class="services">
+    <!-- Chi Siamo Section -->
+    <section class="chi-siamo" id="chi-siamo">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Scopri Chi Siamo</div>
+                <h2 class="section-title">Le Nostre Insegnanti</h2>
+            </div>
+            <div class="teachers-grid">
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <div class="placeholder-img">👤</div>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Maria Rossi</h3>
+                        <p>Insegnante certificata di Hatha e Vinyasa Yoga con oltre 10 anni di esperienza. Specializzata in pratiche di mindfulness e meditazione, accompagna gli studenti in un viaggio di scoperta interiore.</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <div class="placeholder-img">👤</div>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Laura Bianchi</h3>
+                        <p>Maestra di Yin Yoga e terapista olistica. Con una formazione internazionale, porta nelle sue lezioni un approccio gentile e profondo, perfetto per chi cerca rilassamento e guarigione.</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <div class="placeholder-img">👤</div>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Sofia Verdi</h3>
+                        <p>Istruttrice di Pilates e Aerial Yoga. Dinamica e appassionata, rende ogni lezione un'esperienza coinvolgente e trasformativa per corpo e mente.</p>
+                    </div>
+                </div>
+                <div class="teacher-card">
+                    <div class="teacher-image">
+                        <div class="placeholder-img">👤</div>
+                    </div>
+                    <div class="teacher-info">
+                        <h3>Giulia Neri</h3>
+                        <p>Specialista in Yoga per bambini e meditazione. Con un approccio ludico e creativo, introduce i più piccoli al mondo dello yoga in modo naturale e divertente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Il Nostro Centro Section -->
+    <section class="nostro-centro" id="centro">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Il Nostro Spazio</div>
+                <h2 class="section-title">Il Nostro Centro</h2>
+            </div>
+            <div class="centro-carousel">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <div class="placeholder-img large">📸 Foto del Centro 1</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="placeholder-img large">📸 Foto del Centro 2</div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="placeholder-img large">📸 Foto del Centro 3</div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev">‹</button>
+                <button class="carousel-btn next">›</button>
+            </div>
+            <div class="centro-description">
+                <h3>Descrizione del Centro</h3>
+                <p>Il nostro centro è uno spazio accogliente e luminoso, progettato per favorire il benessere e la pratica consapevole. Situato nel cuore della città, offre un rifugio di pace dove dedicarsi alla cura di sé stessi.</p>
+                <p>Le nostre sale sono attrezzate con tutto il necessario per la pratica: tappetini, cuscini, coperte e strumenti per ogni disciplina. L'ambiente è curato nei minimi dettagli per creare un'atmosfera serena e rilassante.</p>
+                <h3>Regolamento</h3>
+                <ul>
+                    <li>Si prega di arrivare 10 minuti prima della lezione</li>
+                    <li>Portare abbigliamento comodo e un telo personale</li>
+                    <li>Spegnere i telefoni cellulari durante le pratiche</li>
+                    <li>Rispettare il silenzio negli spazi comuni</li>
+                    <li>Comunicare eventuali problemi fisici all'insegnante</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discipline Section -->
+    <section class="services" id="discipline">
         <div class="section-header">
             <div class="section-label">Le Nostre Pratiche</div>
             <h2 class="section-title">Discipline per il Benessere</h2>
             <p class="section-subtitle">Scopri il percorso perfetto per te tra le nostre proposte olistiche</p>
         </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">🧘</span>
-                <h3 class="service-title">Hatha Yoga</h3>
-                <p class="service-desc">Equilibrio tra forza e flessibilità attraverso posizioni e tecniche di respirazione</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        
+        <div class="discipline-detail" id="vinyasa">
+            <div class="discipline-content">
+                <div class="discipline-text">
+                    <h3>Vinyasa Yoga</h3>
+                    <p>Il Vinyasa Yoga è una pratica dinamica che sincronizza movimento e respiro in sequenze fluide. Perfetto per chi cerca energia, forza e flessibilità, ogni lezione è un viaggio che risveglia il corpo e calma la mente.</p>
+                </div>
+                <div class="discipline-image">
+                    <div class="placeholder-img">🧘 Foto Vinyasa</div>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🌊</span>
-                <h3 class="service-title">Vinyasa Flow</h3>
-                <p class="service-desc">Sequenze dinamiche che sincronizzano movimento e respiro in modo fluido</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        </div>
+
+        <div class="discipline-detail" id="power-vinyasa">
+            <div class="discipline-content reverse">
+                <div class="discipline-image">
+                    <div class="placeholder-img">💪 Foto Power Vinyasa</div>
+                </div>
+                <div class="discipline-text">
+                    <h3>Power Vinyasa</h3>
+                    <p>Una versione più intensa e atletica del Vinyasa, il Power Vinyasa combina forza, resistenza e flessibilità. Ideale per chi vuole una pratica sfidante che tonifica il corpo e rafforza la determinazione.</p>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🕉️</span>
-                <h3 class="service-title">Meditazione</h3>
-                <p class="service-desc">Pratiche guidate per raggiungere la pace interiore e la consapevolezza</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        </div>
+
+        <div class="discipline-detail" id="yin-yoga">
+            <div class="discipline-content">
+                <div class="discipline-text">
+                    <h3>Yin Yoga</h3>
+                    <p>Rilassamento profondo attraverso posizioni mantenute e stretching passivo. Lo Yin Yoga lavora sui tessuti connettivi profondi, favorendo flessibilità e liberazione delle tensioni accumulate.</p>
+                </div>
+                <div class="discipline-image">
+                    <div class="placeholder-img">🌙 Foto Yin Yoga</div>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🌙</span>
-                <h3 class="service-title">Yin Yoga</h3>
-                <p class="service-desc">Rilassamento profondo attraverso posizioni mantenute e stretching passivo</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        </div>
+
+        <div class="discipline-detail" id="pilates">
+            <div class="discipline-content reverse">
+                <div class="discipline-image">
+                    <div class="placeholder-img">🤸 Foto Pilates</div>
+                </div>
+                <div class="discipline-text">
+                    <h3>Pilates</h3>
+                    <p>Metodo di allenamento che rafforza il core, migliora la postura e aumenta la consapevolezza corporea. Con esercizi controllati e precisi, il Pilates scolpisce il corpo e migliora la qualità del movimento.</p>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">💆</span>
-                <h3 class="service-title">Trattamenti</h3>
-                <p class="service-desc">Massaggi e terapie olistiche per il riequilibrio energetico completo</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        </div>
+
+        <div class="discipline-detail" id="udan-yoga">
+            <div class="discipline-content">
+                <div class="discipline-text">
+                    <h3>Udan Yoga</h3>
+                    <p>Pratica che unisce elementi di yoga tradizionale con tecniche di respiro avanzate. L'Udan Yoga stimola l'energia vitale e promuove un senso di leggerezza e apertura.</p>
+                </div>
+                <div class="discipline-image">
+                    <div class="placeholder-img">✨ Foto Udan Yoga</div>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">✨</span>
-                <h3 class="service-title">Workshops</h3>
-                <p class="service-desc">Eventi speciali e approfondimenti con maestri e insegnanti qualificati</p>
-                <a href="http://" class="service-link">Scopri di più →</a>
+        </div>
+
+        <div class="discipline-detail" id="aerial-move">
+            <div class="discipline-content reverse">
+                <div class="discipline-image">
+                    <div class="placeholder-img">🎪 Foto Aerial Move</div>
+                </div>
+                <div class="discipline-text">
+                    <h3>Aerial Move</h3>
+                    <p>Yoga aereo che utilizza amache sospese per esplorare le posizioni da nuove prospettive. Un'esperienza unica che sfida la gravità e porta gioia e leggerezza alla pratica.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="discipline-detail" id="yoga-bimbi">
+            <div class="discipline-content">
+                <div class="discipline-text">
+                    <h3>Yoga Bimbi</h3>
+                    <p>Lezioni pensate per i più piccoli, dove lo yoga diventa un gioco. Attraverso storie, canzoni e movimenti creativi, i bambini scoprono il loro corpo e imparano a gestire le emozioni.</p>
+                </div>
+                <div class="discipline-image">
+                    <div class="placeholder-img">🧒 Foto Yoga Bimbi</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="discipline-detail" id="meditazione">
+            <div class="discipline-content reverse">
+                <div class="discipline-image">
+                    <div class="placeholder-img">🕉️ Foto Meditazione</div>
+                </div>
+                <div class="discipline-text">
+                    <h3>Meditazione, Pranayama e Filosofia Vedica</h3>
+                    <p>Pratiche guidate per raggiungere la pace interiore e la consapevolezza. Attraverso tecniche di respirazione e studio della filosofia yogica, si accede a una comprensione più profonda di sé.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="discipline-detail" id="lezioni-individuali">
+            <div class="discipline-content">
+                <div class="discipline-text">
+                    <h3>Lezioni Individuali e Personalizzate</h3>
+                    <p>Percorsi su misura per le tue esigenze specifiche. Le lezioni private permettono un approccio personalizzato, ideale per principianti, per chi ha esigenze particolari o desidera approfondire aspetti specifici della pratica.</p>
+                </div>
+                <div class="discipline-image">
+                    <div class="placeholder-img">👥 Foto Lezioni Individuali</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-form-section">
+            <h3>Contattaci</h3>
+            <form class="contact-form">
+                <input type="text" placeholder="Il tuo nome *" required>
+                <input type="email" placeholder="La tua email *" required>
+                <input type="text" placeholder="Oggetto">
+                <textarea placeholder="Il tuo messaggio" rows="5"></textarea>
+                <button type="submit" class="btn-primary">Invia</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Calendario Corsi Section -->
+    <section class="calendario" id="calendario">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Orari e Prenotazioni</div>
+                <h2 class="section-title">Calendario Corsi</h2>
+            </div>
+            <div class="calendar-placeholder">
+                <div class="placeholder-img extra-large">📅 Calendario Corsi Settimanale</div>
+                <p>Qui sarà integrato il calendario interattivo con gli orari di tutti i corsi</p>
             </div>
         </div>
     </section>
 
-    <section class="cta">
+    <!-- Trattamenti Section -->
+    <section class="trattamenti" id="trattamenti">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Benessere Olistico</div>
+                <h2 class="section-title">Trattamenti</h2>
+            </div>
+
+            <div class="trattamento-detail" id="theores">
+                <div class="trattamento-content">
+                    <div class="trattamento-text">
+                        <h3>Theores Massage</h3>
+                        <p>Massaggio terapeutico che combina tecniche occidentali e orientali per un benessere completo. Lavora su tensioni muscolari profonde e riequilibra l'energia del corpo.</p>
+                    </div>
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">💆 Foto Theores</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trattamento-detail" id="antistress">
+                <div class="trattamento-content reverse">
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">🌺 Foto Antistress</div>
+                    </div>
+                    <div class="trattamento-text">
+                        <h3>Massaggio Olistico Antistress</h3>
+                        <p>Trattamento rilassante che scioglie le tensioni accumulate e favorisce uno stato di profondo relax. Perfetto per chi cerca un momento di pausa dalla frenesia quotidiana.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trattamento-detail" id="linfodrenaggio">
+                <div class="trattamento-content">
+                    <div class="trattamento-text">
+                        <h3>Linfodrenaggio Medico</h3>
+                        <p>Tecnica specializzata che stimola il sistema linfatico, favorendo il drenaggio dei liquidi e la depurazione dell'organismo. Indicato per gonfiori e ritenzione idrica.</p>
+                    </div>
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">💧 Foto Linfodrenaggio</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trattamento-detail" id="reiki">
+                <div class="trattamento-content reverse">
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">✨ Foto Reiki</div>
+                    </div>
+                    <div class="trattamento-text">
+                        <h3>Trattamento Reiki</h3>
+                        <p>Antica pratica energetica giapponese che riequilibra i chakra e favorisce l'autoguarigione. Un'esperienza profonda di connessione con l'energia vitale universale.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trattamento-detail" id="bagno-sonoro">
+                <div class="trattamento-content">
+                    <div class="trattamento-text">
+                        <h3>Bagno Sonoro</h3>
+                        <p>Esperienza immersiva con campane tibetane e strumenti armonici. Le vibrazioni sonore inducono uno stato meditativo profondo e favoriscono il rilascio delle tensioni.</p>
+                    </div>
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">🔔 Foto Bagno Sonoro</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trattamento-detail" id="riflessologia">
+                <div class="trattamento-content reverse">
+                    <div class="trattamento-image">
+                        <div class="placeholder-img">🦶 Foto Riflessologia</div>
+                    </div>
+                    <div class="trattamento-text">
+                        <h3>Riflessologia Plantare</h3>
+                        <p>Tecnica che stimola specifici punti riflessi sui piedi corrispondenti agli organi del corpo. Favorisce l'equilibrio e il benessere generale dell'organismo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <h3>Contattaci per Prenotare un Trattamento</h3>
+                <form class="contact-form">
+                    <input type="text" placeholder="Il tuo nome *" required>
+                    <input type="email" placeholder="La tua email *" required>
+                    <input type="text" placeholder="Oggetto">
+                    <textarea placeholder="Il tuo messaggio" rows="5"></textarea>
+                    <button type="submit" class="btn-primary">Invia</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Consulenze Section -->
+    <section class="consulenze" id="consulenze">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Percorsi Personali</div>
+                <h2 class="section-title">Consulenze</h2>
+            </div>
+
+            <div class="consulenza-detail" id="numerologia">
+                <div class="consulenza-content">
+                    <div class="consulenza-text">
+                        <h3>Numerologia</h3>
+                        <p>Scopri il significato nascosto dei numeri nella tua vita. La numerologia rivela aspetti profondi della personalità e del percorso esistenziale attraverso l'analisi della data di nascita e del nome.</p>
+                    </div>
+                    <div class="consulenza-image">
+                        <div class="placeholder-img">🔢 Foto Numerologia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulenza-detail" id="ayurvedica">
+                <div class="consulenza-content reverse">
+                    <div class="consulenza-image">
+                        <div class="placeholder-img">🌿 Foto Ayurvedica</div>
+                    </div>
+                    <div class="consulenza-text">
+                        <h3>Consulenza Ayurvedica</h3>
+                        <p>Valutazione della costituzione individuale secondo l'antica medicina indiana. Ricevi consigli personalizzati su alimentazione, stile di vita e pratiche per riequilibrare i dosha.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulenza-detail" id="naturopatia">
+                <div class="consulenza-content">
+                    <div class="consulenza-text">
+                        <h3>Naturopatia</h3>
+                        <p>Approccio olistico alla salute che utilizza rimedi naturali e tecniche dolci. Il naturopata supporta i processi di autoguarigione del corpo attraverso un percorso personalizzato.</p>
+                    </div>
+                    <div class="consulenza-image">
+                        <div class="placeholder-img">🍃 Foto Naturopatia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulenza-detail" id="osteopatia">
+                <div class="consulenza-content reverse">
+                    <div class="consulenza-image">
+                        <div class="placeholder-img">🦴 Foto Osteopatia</div>
+                    </div>
+                    <div class="consulenza-text">
+                        <h3>Osteopatia</h3>
+                        <p>Terapia manuale che tratta disfunzioni del sistema muscolo-scheletrico. L'osteopata lavora sul corpo nella sua globalità per ripristinare l'equilibrio e alleviare dolori e tensioni.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="consulenza-detail" id="astrologia">
+                <div class="consulenza-content">
+                    <div class="consulenza-text">
+                        <h3>Astrologia</h3>
+                        <p>Lettura del tema natale e analisi astrologica personalizzata. Comprendi le influenze planetarie e scopri potenzialità e sfide del tuo percorso attraverso la saggezza degli astri.</p>
+                    </div>
+                    <div class="consulenza-image">
+                        <div class="placeholder-img">⭐ Foto Astrologia</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <h3>Richiedi una Consulenza</h3>
+                <form class="contact-form">
+                    <input type="text" placeholder="Il tuo nome *" required>
+                    <input type="email" placeholder="La tua email *" required>
+                    <input type="text" placeholder="Oggetto">
+                    <textarea placeholder="Il tuo messaggio" rows="5"></textarea>
+                    <button type="submit" class="btn-primary">Invia</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eventi e Formazione Section -->
+    <section class="eventi" id="eventi">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Crescita e Apprendimento</div>
+                <h2 class="section-title">Eventi e Formazione</h2>
+            </div>
+            <div class="eventi-grid">
+                <div class="evento-card">
+                    <div class="evento-image">
+                        <div class="placeholder-img">📅 Locandina Corso</div>
+                    </div>
+                    <div class="evento-info">
+                        <span class="evento-tag">Corso di Formazione</span>
+                        <h3>Teacher Training 200h</h3>
+                        <p class="evento-date">Data: Marzo - Giugno 2025</p>
+                        <p>Corso completo per diventare insegnante di yoga certificato. 200 ore di formazione intensiva che coprono asana, anatomia, filosofia e metodologia di insegnamento.</p>
+                        <a href="#contatti" class="evento-link">Info e Iscrizioni →</a>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="evento-image">
+                        <div class="placeholder-img">🎉 Locandina Evento</div>
+                    </div>
+                    <div class="evento-info">
+                        <span class="evento-tag">Workshop</span>
+                        <h3>Workshop Yin & Yang</h3>
+                        <p class="evento-date">Data: 15 Gennaio 2025</p>
+                        <p>Una giornata dedicata all'equilibrio tra pratica dinamica e rilassamento profondo. Esplora le due polarità dello yoga in un'esperienza trasformativa.</p>
+                        <a href="#contatti" class="evento-link">Prenota →</a>
+                    </div>
+                </div>
+                <div class="evento-card">
+                    <div class="evento-image">
+                        <div class="placeholder-img">🌟 Locandina Evento</div>
+                    </div>
+                    <div class="evento-info">
+                        <span class="evento-tag">Evento Speciale</span>
+                        <h3>Ritiro di Primavera</h3>
+                        <p class="evento-date">Data: 20-23 Aprile 2025</p>
+                        <p>Weekend immersi nella natura per rinnovare corpo e spirito. Yoga, meditazione, passeggiate e momenti di condivisione in un luogo magico.</p>
+                        <a href="#contatti" class="evento-link">Scopri di più →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spotify Section -->
+    <section class="spotify-section" id="spotify">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-label">Musica per la Pratica</div>
+                <h2 class="section-title">Le Nostre Playlist Spotify</h2>
+                <p class="section-subtitle">Playlist curate per accompagnare la tua pratica a casa</p>
+            </div>
+            <div class="spotify-grid">
+                <div class="spotify-card">
+                    <div class="spotify-icon">🎵</div>
+                    <h3>Playlist Vinyasa</h3>
+                    <p>Musica energetica e ritmica per una pratica dinamica</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+                <div class="spotify-card">
+                    <div class="spotify-icon">🎶</div>
+                    <h3>Playlist Aerial Move</h3>
+                    <p>Suoni ispiranti per volare leggeri</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+                <div class="spotify-card">
+                    <div class="spotify-icon">🎼</div>
+                    <h3>Playlist Udan Yoga</h3>
+                    <p>Melodie per elevare la pratica</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+                <div class="spotify-card">
+                    <div class="spotify-icon">🎹</div>
+                    <h3>Playlist Pilates</h3>
+                    <p>Ritmi per un movimento fluido e controllato</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+                <div class="spotify-card">
+                    <div class="spotify-icon">🎧</div>
+                    <h3>Podcast Consigliati</h3>
+                    <p>Approfondimenti su yoga, meditazione e benessere</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+                <div class="spotify-card">
+                    <div class="spotify-icon">🔔</div>
+                    <h3>Meditazioni Guidate</h3>
+                    <p>Pratiche audio per la meditazione quotidiana</p>
+                    <a href="#" class="spotify-link">Ascolta su Spotify →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contatti">
         <div class="cta-content">
             <h2 class="cta-title">Inizia il Tuo Viaggio</h2>
             <p class="cta-text">Prenota la tua prima lezione gratuita e scopri come lo yoga può trasformare la tua vita</p>
-            <a href="http://" class="btn-white">Prenota Ora</a>
+            <a href="mailto:info@fiordiloto.it" class="btn-white">Contattaci Ora</a>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-brand">
-                <h3>Fior di Loto</h3>
+                <h3>🪷 Fior di Loto</h3>
                 <p>Centro specializzato in yoga, meditazione e pratiche olistiche per il benessere completo di corpo e mente.</p>
             </div>
             <div class="footer-section">
                 <h4>Navigazione</h4>
-                <a href="http://">Home</a>
-                <a href="http://">Chi Siamo</a>
-                <a href="http://">Corsi</a>
-                <a href="http://">Contatti</a>
+                <a href="#home">Home</a>
+                <a href="#chi-siamo">Chi Siamo</a>
+                <a href="#centro">Il Nostro Centro</a>
+                <a href="#discipline">Discipline</a>
+                <a href="#calendario">Calendario</a>
             </div>
             <div class="footer-section">
                 <h4>Servizi</h4>
-                <a href="http://">Yoga</a>
-                <a href="http://">Meditazione</a>
-                <a href="http://">Trattamenti</a>
-                <a href="http://">Eventi</a>
+                <a href="#trattamenti">Trattamenti</a>
+                <a href="#consulenze">Consulenze</a>
+                <a href="#eventi">Eventi</a>
+                <a href="#spotify">Spotify</a>
             </div>
             <div class="footer-section">
                 <h4>Contatti</h4>
-                <a href="http://">info@fiordiloto.it</a>
-                <a href="http://">+39 123 456 7890</a>
-                <a href="http://">Via del Benessere, 123</a>
+                <a href="mailto:info@fiordiloto.it">info@fiordiloto.it</a>
+                <a href="tel:+391234567890">+39 123 456 7890</a>
+                <a>Via del Benessere, 123<br>Roma, Italia</a>
             </div>
         </div>
         <div class="footer-bottom">
