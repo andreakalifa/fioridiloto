@@ -2,9 +2,15 @@
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 
-if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
+console.log('Menu Toggle Element:', menuToggle);
+console.log('Nav Menu Element:', navMenu);
+
+if (menuToggle && navMenu) {
+    menuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        console.log('Hamburger menu clicked');
         navMenu.classList.toggle('active');
+        console.log('Menu is now active:', navMenu.classList.contains('active'));
         
         // Animate hamburger icon
         const spans = menuToggle.querySelectorAll('span');
@@ -12,6 +18,8 @@ if (menuToggle) {
         spans[1].style.opacity = navMenu.classList.contains('active') ? '0' : '1';
         spans[2].style.transform = navMenu.classList.contains('active') ? 'rotate(-45deg) translate(6px, -6px)' : '';
     });
+} else {
+    console.error('Menu elements not found!');
 }
 
 // Mobile dropdown toggle functionality
