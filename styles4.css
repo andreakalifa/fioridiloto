@@ -50,12 +50,12 @@ html {
 
 .menu-toggle {
     display: none; flex-direction: column; gap: 5px; background: none; border: none;
-    cursor: pointer; padding: 5px;
+    cursor: pointer; padding: 8px; z-index: 1001; position: relative;
 }
 
 .menu-toggle span {
     width: 25px; height: 3px; background: var(--primary); border-radius: 3px;
-    transition: all 0.3s;
+    transition: all 0.3s; display: block;
 }
 
 .nav-menu {
@@ -220,11 +220,11 @@ html {
 }
 
 .teachers-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px;
 }
 
 .teacher-card {
-    display: flex; flex-direction: column; gap: 15px;
+    display: flex; flex-direction: column; gap: 20px;
 }
 
 .teacher-image {
@@ -235,7 +235,7 @@ html {
 .placeholder-img {
     width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
     background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(192, 132, 252, 0.1));
-    font-size: 36px; color: var(--primary);
+    font-size: 48px; color: var(--primary);
 }
 
 .placeholder-img.large {
@@ -247,11 +247,11 @@ html {
 }
 
 .teacher-info h3 {
-    font-size: 20px; font-weight: 700; color: var(--primary); margin-bottom: 8px;
+    font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 10px;
 }
 
 .teacher-info p {
-    color: #666; line-height: 1.6; font-size: 15px;
+    color: #666; line-height: 1.7; font-size: 15px;
 }
 
 /* Il Nostro Centro Section */
@@ -330,7 +330,7 @@ html {
 }
 
 .discipline-content, .trattamento-content, .consulenza-content {
-    display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;
 }
 
 .discipline-content.reverse, .trattamento-content.reverse, .consulenza-content.reverse {
@@ -696,5 +696,13 @@ footer {
     
     .teachers-grid, .eventi-grid, .spotify-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .discipline-content, .trattamento-content, .consulenza-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .discipline-content.reverse, .trattamento-content.reverse, .consulenza-content.reverse {
+        direction: ltr;
     }
 }
