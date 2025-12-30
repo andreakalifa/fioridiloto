@@ -233,20 +233,43 @@ html {
 }
 
 .teachers-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
     gap: 30px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+}
+
+.teachers-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.teachers-grid::-webkit-scrollbar-track {
+    background: rgba(147, 51, 234, 0.1);
+    border-radius: 10px;
+}
+
+.teachers-grid::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.teachers-grid::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
 }
 
 .teacher-card {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    min-width: 280px;
+    flex-shrink: 0;
 }
 
 .teacher-image {
-    width: 100%;
-    aspect-ratio: 1;
+    width: 280px;
+    height: 280px;
     border-radius: 15px;
     overflow: hidden;
     background: var(--bg-secondary);
@@ -341,80 +364,28 @@ html {
 }
 
 .discipline-detail, .trattamento-detail, .consulenza-detail {
-    margin-bottom: 50px;
+    margin-bottom: 40px;
 }
 
-.discipline-detail h3, .trattamento-detail h3, .consulenza-detail h3 {
-    font-size: 32px;
-    font-weight: 800;
-    color: var(--primary);
-    margin-bottom: 20px;
+.discipline-content, .trattamento-content, .consulenza-content {
+    display: grid; grid-template-columns: 1fr 350px; gap: 30px; align-items: center;
 }
 
-.discipline-scroll, .trattamento-scroll, .consulenza-scroll {
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    padding-bottom: 20px;
-    scroll-behavior: smooth;
-    -webkit-overflow-scrolling: touch;
+.discipline-content.reverse, .trattamento-content.reverse, .consulenza-content.reverse {
+    grid-template-columns: 350px 1fr;
 }
 
-.discipline-scroll::-webkit-scrollbar,
-.trattamento-scroll::-webkit-scrollbar,
-.consulenza-scroll::-webkit-scrollbar {
-    height: 8px;
+.discipline-text h3, .trattamento-text h3, .consulenza-text h3 {
+    font-size: 28px; font-weight: 800; color: var(--primary); margin-bottom: 12px;
 }
 
-.discipline-scroll::-webkit-scrollbar-track,
-.trattamento-scroll::-webkit-scrollbar-track,
-.consulenza-scroll::-webkit-scrollbar-track {
-    background: rgba(147, 51, 234, 0.1);
-    border-radius: 10px;
+.discipline-text p, .trattamento-text p, .consulenza-text p {
+    font-size: 15px; line-height: 1.6; color: #666;
 }
 
-.discipline-scroll::-webkit-scrollbar-thumb,
-.trattamento-scroll::-webkit-scrollbar-thumb,
-.consulenza-scroll::-webkit-scrollbar-thumb {
-    background: var(--primary);
-    border-radius: 10px;
-}
-
-.discipline-card, .trattamento-card, .consulenza-card {
-    min-width: 320px;
+.discipline-image, .trattamento-image, .consulenza-image {
+    width: 350px; height: 260px; border-radius: 12px; overflow: hidden;
     flex-shrink: 0;
-    background: var(--bg-secondary);
-    border-radius: 15px;
-    overflow: hidden;
-    transition: all 0.3s;
-}
-
-.discipline-card:hover, .trattamento-card:hover, .consulenza-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(147, 51, 234, 0.2);
-}
-
-.discipline-card-image, .trattamento-card-image, .consulenza-card-image {
-    width: 320px;
-    height: 240px;
-    overflow: hidden;
-}
-
-.discipline-card-content, .trattamento-card-content, .consulenza-card-content {
-    padding: 25px;
-}
-
-.discipline-card h4, .trattamento-card h4, .consulenza-card h4 {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 12px;
-}
-
-.discipline-card p, .trattamento-card p, .consulenza-card p {
-    font-size: 14px;
-    line-height: 1.6;
-    color: #666;
 }
 
 /* Contact Form */
@@ -758,30 +729,48 @@ footer {
         font-size: 100px;
     }
     
-    .teachers-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+    .teachers-grid, .eventi-grid, .spotify-grid {
+        grid-template-columns: 1fr;
     }
     
-    .eventi-grid, .spotify-grid {
-        grid-template-columns: 1fr;
+    .teachers-grid {
+        display: flex;
+        overflow-x: auto;
+    }
+    
+    .teacher-card {
+        min-width: 250px;
+    }
+    
+    .teacher-image {
+        width: 250px;
+        height: 250px;
     }
     
     .discipline-content, .trattamento-content, .consulenza-content {
         grid-template-columns: 1fr;
     }
     
-    .discipline-scroll, .trattamento-scroll, .consulenza-scroll {
-        gap: 15px;
+    .discipline-content.reverse, .trattamento-content.reverse, .consulenza-content.reverse {
+        grid-template-columns: 1fr;
     }
     
-    .discipline-card, .trattamento-card, .consulenza-card {
-        min-width: 280px;
+    .discipline-image, .trattamento-image, .consulenza-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4/3;
     }
     
-    .discipline-card-image, .trattamento-card-image, .consulenza-card-image {
-        width: 280px;
-        height: 210px;
+    .section-container {
+        padding: 60px 30px;
+    }
+    
+    .services {
+        padding: 60px 30px;
+    }
+    
+    .cta {
+        padding: 60px 30px;
     }
     
     .login-link {
